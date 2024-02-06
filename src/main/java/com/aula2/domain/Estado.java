@@ -1,6 +1,8 @@
 package com.aula2.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -15,6 +17,7 @@ public class Estado  implements Serializable {
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Integer id;
     private String nome;
+    @JsonIgnoreProperties("estado")
     @OneToMany(mappedBy="estado")
     private List<Cidade> cidades = new ArrayList<>();
 

@@ -1,10 +1,11 @@
 package com.aula2.domain;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
+
 import java.util.Objects;
 
 @Entity
@@ -15,6 +16,7 @@ public class Cidade  implements Serializable {
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Integer id;
     private String nome;
+    @JsonIgnoreProperties("cidades")
     @ManyToOne
     @JoinColumn(name="estado_id")
     private Estado estado;
