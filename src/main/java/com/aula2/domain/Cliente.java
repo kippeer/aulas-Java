@@ -1,14 +1,13 @@
 package com.aula2.domain;
 
 import com.aula2.domain.enums.TipoCliente;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import java.io.Serializable;
 import java.util.*;
 
-public class Cliente implements Serializable {
+    @Entity
+    public class Cliente implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -20,8 +19,11 @@ public class Cliente implements Serializable {
 
     private Integer tipo;
 
+    @OneToMany(mappedBy = "cliente")
     private List<Endereco> enderecos = new ArrayList<>();
 
+    @ElementCollection
+    @CollectionTable(name="TELEFONE")
     private Set<String> telefones = new HashSet<>();
 
     public Cliente(){

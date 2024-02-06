@@ -1,9 +1,6 @@
 package com.aula2.domain;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import java.io.Serializable;
 import java.util.Objects;
@@ -11,6 +8,7 @@ import java.util.Objects;
 public class Endereco implements Serializable {
 
     private static final long serialVersionUID = 1L;
+
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Integer id;
@@ -20,12 +18,15 @@ public class Endereco implements Serializable {
     private String bairro;
     private String cep;
 
+    @ManyToOne
+    @JoinColumn(name="cliente_id")
     private Cliente cliente;
 
+    @ManyToOne
+    @JoinColumn(name="cidade_id")
     private Cidade cidade;
 
-    public Endereco(){
-
+    public Endereco() {
     }
 
     public Endereco(Integer id, String logradouro, String numero, String complemento, String bairro, String cep, Cliente cliente,Cidade cidade) {
