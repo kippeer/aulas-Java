@@ -1,7 +1,9 @@
 package com.aula2.domain;
 
 import com.aula2.domain.enums.EstadoPagamento;
+import jakarta.persistence.Entity;
 
+@Entity
 public class PagamentoComCartao extends Pagamento{
     private static final long serialVersionUID = 1L;
     private Integer numeroDeParcelas;

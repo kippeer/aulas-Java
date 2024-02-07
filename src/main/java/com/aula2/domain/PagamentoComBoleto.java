@@ -1,9 +1,11 @@
 package com.aula2.domain;
 
 import com.aula2.domain.enums.EstadoPagamento;
+import jakarta.persistence.Entity;
 
 import java.util.Date;
 
+@Entity
 public class PagamentoComBoleto extends Pagamento{
     private static final long serialVersionUID = 1L;
     private Date dataVencimento;
