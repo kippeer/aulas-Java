@@ -1,6 +1,7 @@
 package com.aula2.domain;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
@@ -17,7 +18,7 @@ public class Categoria implements Serializable {
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Integer id;
     private String nome;
-    @JsonManagedReference
+    @JsonIgnore
     @ManyToMany(mappedBy = "categorias")
     private List<Produto> produtos = new ArrayList<>();
     public Categoria(){

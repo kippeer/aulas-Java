@@ -1,5 +1,6 @@
 package com.aula2.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Embeddable;
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
@@ -29,12 +30,18 @@ public class ItemPedido implements Serializable {
         this.preco = preco;
     }
 
+
+
+    @JsonIgnore
     public Pedido getPedido() {
         return id.getPedido();
     }
+
+    @JsonIgnore
     public Produto getProduto() {
         return id.getProduto();
     }
+    @JsonIgnore
     public ItemPedidoPK getId() {
         return id;
     }
