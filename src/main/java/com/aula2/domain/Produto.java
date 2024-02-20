@@ -1,6 +1,8 @@
 package com.aula2.domain;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
@@ -27,6 +29,7 @@ public class Produto implements Serializable {
     public Set<ItemPedido> getItens() {
         return itens;
     }
+    @JsonIgnore
     public List<Pedido> getPedidos(){
         List<Pedido> lista = new ArrayList<>();
         for (ItemPedido x : itens){
@@ -40,8 +43,10 @@ public class Produto implements Serializable {
         this.itens = itens;
     }
 
+    @JsonIgnore
     @OneToMany(mappedBy = "id.produto")
     private Set<ItemPedido> itens = new HashSet<>();
+
     public Produto(){
 
     }
