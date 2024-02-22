@@ -1,6 +1,7 @@
 package com.aula2.services;
 
 import com.aula2.domain.Categoria;
+import com.aula2.domain.Produto;
 import com.aula2.repositories.CategoriaRepository;
 import com.aula2.services.exceptions.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +29,17 @@ public class CategoriaService {
     public Categoria update(Categoria obj) {
         find(obj.getId());
         return repo.save(obj);
+    }
+
+    public void delete(Integer id) {
+        Categoria obj = find(id);
+
+        // Remover as associações de produto
+        for (Produto produto : obj.getProdutos()) {
+            produto.getCategorias().remove(obj);
+        }
+
+        repo.delete(obj);
     }
 }
 
